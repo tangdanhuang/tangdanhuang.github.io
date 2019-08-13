@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="一些关于Linux的基础操作练习"><meta name="keywords" content><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><title>一些关于Linux的基础操作练习 | Hexo</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux操作练习"><span class="toc-number">1.</span> <span class="toc-text">linux操作练习</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">John Doe</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">5</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Hexo</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">一些关于Linux的基础操作练习</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-13</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>2019/07/19实验笔记（一）<br>练习了一些Linux的操作练习，才好更好的使用Linux，多熟悉熟悉总有好处的</p>
+<a id="more"></a>
+
+<h2 id="linux操作练习"><a href="#linux操作练习" class="headerlink" title="linux操作练习"></a>linux操作练习</h2><p>一、根据要求完成以下任务：</p>
+<p>2、以root身份登录到Linux系统字符界面，默认的Shell命令提示符为“[root@localhost ~]#”,指出命令提示符中每部分的具体含义。</p>
+<pre><code>Root：用户名    localhost：主机名     ~:家目录  </code></pre><p>3、执行命令查看用户当前所在的目录。</p>
+<p>  <img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y2xd2ouej305600odfo.jpg" alt="img"></p>
+<p>4、显示当前目录下所有文件的详细信息（包含隐藏文件），在Linux系统中，隐藏文件的标识是什么？在显示的文件详细信息中，第1组的第1个字符代表文件类别：- d l c b分别代表是哪种文件的类型？</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y2y2khk2j307300na9y.jpg" alt="img"></p>
+<p>隐藏文件以.开头</p>
+<p>-表示普通文件，l表示连接，c表示字符设备，b表示块设备</p>
+<p>5、显示/etc/inittab文件的详细信息。</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y2yov0zlj309k00oglj.jpg" alt="img"></p>
+<p>6、显示/dev目录中所有以“sd”开头的文件的详细信息。</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y2z0h87nj308y00rt8n.jpg" alt="img"></p>
+<p>7、在root用户家目录里创建一个名为test1的目录。</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y2zdlrqwj308000mwee.jpg" alt="img"></p>
+<p>8、在test1目录中创建一个名为temp1的空文件。</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y2zshh0sj309100k0so.jpg" alt="img"></p>
+<p>9、将文件temp1复制一分进行备份，仍然保存在/root/test1/目录下，备份的文件名为temp1.bak。</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y308oz9hj30au00owej.jpg" alt="img"></p>
+<p>10、将文件temp1.bak改名为temp.bak,并将temp.bak移动到/temp/目录下。</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y30xk0xoj30cy00ngll.jpg" alt="img"></p>
+<p>11、将/root/test1/目录强制删除。</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y31bl9wuj309k00l748.jpg" alt="img"></p>
+<p>12、用cat命令查看/etc/sysconfig/network-scripts/ifcfg-eth0文件的内容，注意tab键补齐。</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g5y31mtvquj30fe00imx7.jpg" alt="img"> </p>
+<p>13、分别用more、less命令分屏查看/etc/passwd文件的内容，并说出他们之间的区别。</p>
+<p>  More向下翻完之后自动退出且只能向下翻。Less可以往后翻也可以往前翻</p>
+<p>14、查看/etc/passwd文件的前10行内容。</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g5y323z4boj30a800i749.jpg" alt="img"> </p>
+<p>15、查看/etc/passwd文件的后5行内容。</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g5y32iz11wj309w00jjrc.jpg" alt="img"> </p>
+<p>16、统计/etc目录中扩展名是“.conf”的文件的个数。</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y32ut3yrj30au00hglk.jpg" alt="img"> </p>
+<p>17、查找/dev目录中所有”sd”开头的文件。</p>
+<p>  <img src="http://ws1.sinaimg.cn/large/0078H38igy1g5y335a2n3j309w00hglk.jpg" alt="img"></p>
+<p>18、查找/dev 目录以sd开头的文件，将结果保存到/temp/fhttp.file文件中。</p>
+<p># ls -l /dev/sd* &gt; /tmp/fhttp.file</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y33i7y52j30d602iq3y.jpg" alt="img"> </p>
+<p>19、在/boot目录中查找大小超过1024KB而且文件名以“init”开头的文件。</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y33svnzcj30ej00lq2z.jpg" alt="img"></p>
+<p>20、在/etc/passwd文件中查找包含“root”字符串的行。</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y343tl69j30ae00iaa1.jpg" alt="img"> </p>
+<p>21、在/etc/httpd/conf/httpd.conf文件中查找所以“#”开头的行。</p>
+<p>  <img src="http://wx3.sinaimg.cn/large/0078H38igy1g5y34evayyj30a300kt8o.jpg" alt="img"></p>
+<p>22、查找/etc/httpd/conf/httpd.conf文件中不是以“#”开头的行。</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g5y34r72juj30ev00l3yl.jpg" alt="img"></p>
+<p>23、查找所有属于普通用户student的文件。</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y34zdecyj30b100hdft.jpg" alt="img"> </p>
+<p>24、为/etc/httpd/conf/httpd.conf文件在root用户家目录中创建一个名为httpd的软链接。</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y35bqm59j30fe00kgln.jpg" alt="img"> </p>
+<p>25、创建一个名为wcl的命令的别名，完成下列要求。</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y35xfoudj30ca01d0sx.jpg" alt="img"> </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/13/linux操作练习/">http://yoursite.com/2019/08/13/linux操作练习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/13/Linux权限练习/"><i class="fa fa-chevron-left">  </i><span>修改权限（chmod）----用户组权限练习</span></a></div><div class="next-post pull-right"><a href="/2019/08/13/使用sqlmap实现自动注入攻击/"><span>使用sqlmap实现自动注入攻击</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By John Doe</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

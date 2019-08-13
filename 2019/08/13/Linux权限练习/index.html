@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="修改权限（chmod）----用户组权限练习"><meta name="keywords" content><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><title>修改权限（chmod）----用户组权限练习 | Hexo</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">John Doe</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">5</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Hexo</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">修改权限（chmod）----用户组权限练习</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-13</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>2019/07/21实验笔记（二）</p>
+<p>通过修改用户组的权限，达到区分每组人员的权限分配</p>
+<a id="more"></a>
+
+<p>创建用户组xm1z xm2z glz</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y37k41tpj309g01lmxh.jpg" alt="img"> </p>
+<p>添加用户xm11 xm12然后将这两个用户归到xm1z</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g5y387foljj30ay024t9b.jpg" alt="img"> </p>
+<p>将xm11设置为xm1z的组管理员</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y38ink3ij30at00nq2x.jpg" alt="img"> </p>
+<p>创建用户xm21和xm22并且把他们归到xm2z然后把xm21设为管理员</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y38s9pjvj30ax013dfx.jpg" alt="img"><img src="http://wx4.sinaimg.cn/large/0078H38igy1g5y39qm0raj30ax00yweo.jpg" alt="img"> </p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y3a0726ij30ax00ht8o.jpg" alt="img"> </p>
+<p>创建用户xmjl、rsjl、xmzl然后把他们归到glz</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3a9qc8pj30ah036ab4.jpg" alt="img"> </p>
+<p>创建目录xm1z、xm2z、wan19，把目录xm1z的属组改为xm1z，xm2z和glz同理</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g5y3ajglzfj309q034ab2.jpg" alt="img"> </p>
+<p>设置acl规则使xmjl在目录xm1z和xm2z中有rwx权限</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g5y3atswlxj30cl022adf.jpg" alt="img"> </p>
+<p>修改三个目录的权限为rw-</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g5y3b7h2q8j309f01l74m.jpg" alt="img"> </p>
+<p>把xm1z的属主改为xm11，xm2z同理</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y3biyljvj309r0153yo.jpg" alt="img"> </p>
+<p>这个时候看一下这三个目录的权限</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g5y3brlq78j30bk01nt96.jpg" alt="img"> </p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g5y3c0wikfj30c6013aaa.jpg" alt="img"> </p>
+<p>将目录xm1z设置为SBIT和SGID</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g5y3dt6q6pj309801ygm6.jpg" alt="img"> </p>
+<p>切换为用户xm11尝试进入xm2z</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y3e4uf3jj307i01jt8x.jpg" alt="img"> </p>
+<p>进入xm1z创建文件xm11和xm11.1</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3ed6i7vj307d00f746.jpg" alt="img"> </p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3evlr4qj308s01maad.jpg" alt="img"> </p>
+<p>切换为xm12尝试进入xm2z</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y3f4db05j307i01hwep.jpg" alt="img"> </p>
+<p>进入xm1z尝试删除xm11.1和创建xm12</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3fdaplqj309901n0t3.jpg" alt="img"> </p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y3fnw8gzj308c0180ss.jpg" alt="img"> </p>
+<p>xm21和xm11相同，xm22和xm12相同，不再重复</p>
+<p>切换为xmjl尝试进入xm1z和xm2z</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3fwkvxxj307i0133yl.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g5y3g4128sj307d012mx7.jpg" alt="img"> </p>
+<p>尝试在xm2z中创建文件</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3gbu73nj308k01mt8w.jpg" alt="img"> </p>
+<p>进入xm1z尝试删除文件</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y3gjcy8sj308y031gmc.jpg" alt="img"> </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/13/Linux权限练习/">http://yoursite.com/2019/08/13/Linux权限练习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/13/vim操作练习/"><i class="fa fa-chevron-left">  </i><span>vim练习</span></a></div><div class="next-post pull-right"><a href="/2019/08/13/linux操作练习/"><span>一些关于Linux的基础操作练习</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By John Doe</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

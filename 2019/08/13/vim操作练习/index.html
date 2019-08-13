@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="vim练习"><meta name="keywords" content><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><title>vim练习 | Hexo</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">John Doe</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">5</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Hexo</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">vim练习</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-13</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>2019/07/21实验笔记（三）</p>
+<p>使用vim，进行了一些基础练习，稍微熟悉了vim的一些操作</p>
+<a id="more"></a>
+
+<p>1、请在 /tmp 这个目录下建立一个名为 vitest 的目录；</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g5y3msz2mnj308p00hq2v.jpg" alt="img"> </p>
+<p>2、进入 vitest 这个目录当中；</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g5y3n22ve2j307y015q31.jpg" alt="img"> </p>
+<p>3、将 /etc/enscript.cfg 复制到本目录下；</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y3naa7ojj30eu01h3yt.jpg" alt="img"> </p>
+<p>4、使用 vim打开 enscript.cfg；</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y3nmwf1bj30ae00kgll.jpg" alt="img"> </p>
+<p>5、在vim中设定行号；</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3nx4xbhj304t00mdfm.jpg" alt="img"> </p>
+<p>6、移动到第 21行，向右移动20个字符，请问你看到光标是什么内容？</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y3o5vibpj308g00ljrb.jpg" alt="img"> </p>
+<p>7、移动到第一行，并且向下搜寻一下『 you 』这个字符串，请问他在第几行？</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3omtscyj305b01gmx6.jpg" alt="img"><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y3oxotiij302g01fa9v.jpg" alt="img"><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3p8tmgqj302e00pmwz.jpg" alt="img"> </p>
+<p>8、接着下来，我要将 2 到 23 行间『大写 G字符串』改为『小写 g 字符串』，并且        一个一个挑选是否需要修改，如何下达指令？如果在挑选过程中一直按『y』， 结        果会在最后一行出现改变了几个 G 呢？</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y3pph4i1j304h013q2s.jpg" alt="img"><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3q1aqcgj304l03edg1.jpg" alt="img"><img src="http://wx2.sinaimg.cn/large/0078H38igy1g5y3q9q8czj304e00k745.jpg" alt="img"> </p>
+<p>9、修改完后，突然反悔了，要全部复原，有哪些方法？</p>
+<p>一直按u或者q！</p>
+<p>10、我要复制 15 到 20 这六行的内容，并且贴到最后一行之后；</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g5y3qnd90fj303l00vjr7.jpg" alt="img"><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y3qwj4clj302c00vq2q.jpg" alt="img">先输入15G再输入6yy会出现‘复制了6行’再按G到最后一行，然后按p会‘出现多了6行’</p>
+<p>11、删除21 到 42 行的内容，要如何删除？</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3r50ctzj30fe018wev.jpg" alt="img"> </p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g5y3rbzdruj307x015746.jpg" alt="img"><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3rlpv1zj303y014glf.jpg" alt="img"> </p>
+<p>12、将这个档案另存为 man.test.config ；</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g5y3rwoif5j30bf00zgll.jpg" alt="img"> </p>
+<p>13、去到第 27 行，并且删除 15 个字符，结果出现的第一个单字是什么？</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g5y3s7uao5j302w00kwea.jpg" alt="img"> </p>
+<p>14、在第一行前新增一行，该行内容输入『I am a student…』；</p>
+<p>先输入1G，再输入大写的O，然后键入内容，再按esc退出插入模式。</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g5y3seotg3j305l017jrb.jpg" alt="img"> </p>
+<p>15、保存并退出。</p>
+<p>：wq</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/13/vim操作练习/">http://yoursite.com/2019/08/13/vim操作练习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/2019/08/13/Linux权限练习/"><span>修改权限（chmod）----用户组权限练习</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By John Doe</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
