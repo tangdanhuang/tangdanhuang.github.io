@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="文件上传实验"><meta name="keywords" content><meta name="author" content="Tangdanhuang"><meta name="copyright" content="Tangdanhuang"><title>文件上传实验 | Tangdanhuang'blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-08-01实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/08/01实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Tangdanhuang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">18</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tangdanhuang'blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">文件上传实验</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-24</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-08-01实验笔记"><a href="#2019-08-01实验笔记" class="headerlink" title="2019/08/01实验笔记"></a>2019/08/01实验笔记</h2><p>体验了ssrf漏洞的使用方法，尝试了上传一句话木马的方法。</p>
+<a id="more"></a>
+
+<p>任务1：文件上传类型绕过</p>
+<p>1、编写一句话木马</p>
+<p>2、上传，抓包，修改文件的类型为jpeg</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6avv2usr1j30fe03nt9b.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avv6lyvhj30d903dwf6.jpg" alt="img"> </p>
+<p>上传成功，</p>
+<p>3、使用蚁剑连接刚刚上传的木马</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avvb574nj30fe0ak3zq.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务2：upload-labs/less-2</p>
+<p>1、编写一句话木马</p>
+<p>2、上传，抓包，修改文件的类型为png</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avvfwpi6j30cf02p3yz.jpg" alt="img"> </p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avvlwmrnj30d201b74f.jpg" alt="img"> </p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avvq0v55j3097086glo.jpg" alt="img"> </p>
+<p>上传成功</p>
+<p>4、使用蚁剑连接刚刚上传的木马</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avvuz4y0j30g20aumyf.jpg" alt="img"> </p>
+<p>任务3：文件截断绕过上传less-11</p>
+<p>1、构建一句话木马，格式为.jpg</p>
+<p>2、上传抓包，修改上传路径为.php%00</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avw1qybuj30fe017mxc.jpg" alt="img"> </p>
+<p>放包</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6avw8810pj307507lwem.jpg" alt="img"> </p>
+<p>3、使用蚁剑连接刚刚上传的木马</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6avwcawj7j30fd08ft9m.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务4：upload/less-12</p>
+<p>1、构建一句话木马</p>
+<p>2、上传，抓包，可以看到这里的save_path是通过post传进来的</p>
+<p>3、将save_path改为/hihack.php+</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avwh9200j30fe0d5whw.jpg" alt="img"> </p>
+<p>4、修改+为00，在二进制中修改</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avwndh7lj30b101wt9d.jpg" alt="img"> </p>
+<p>放包</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avwss1cuj309o07zglq.jpg" alt="img"> </p>
+<p>5、在蚁剑中连接这个木马</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avwx9teoj30fd08dt9m.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务5：竞争上传</p>
+<p>1、构建一句话木马</p>
+<p>2、上传，等待时间结束，发现上传的文件已经被删除了</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avx2gpxbj30fe02sdfx.jpg" alt="img"> </p>
+<p>3、打开第二个网站，在文件被删除之前执行文件</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6avx7e5ybj30fe02r3yv.jpg" alt="img"> </p>
+<p>可见11.php已经执行了</p>
+<p>查看文件夹</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avxej6gij30fe02yjrj.jpg" alt="img"> </p>
+<p>发现11.php已经被删除了，而11执行在被删除之前生成了shell</p>
+<p>任务6：文件上传upload-labs/less-17</p>
+<p>1、构建一句话木马</p>
+<p>2、上传抓包，设置为100个线程，在没有被删除的时候乘机执行程序</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avxkanahj30fe05kwf5.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avxqe5hlj30bl04qaa7.jpg" alt="img"> </p>
+<p>3、使用蚁剑连接这个木马尝试连接</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avxxs3o9j30fe0ae0u1.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务7：暴力破解</p>
+<p>1、分析源码可以得到密码会经过md5加密然后与数据库对比进行登录验证，所以这里的用户名猜测为唯一的md5加密密码的用户test</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6avy40vkcj30dd02hdfx.jpg" alt="img"> </p>
+<p>2、使用test进行登录抓包</p>
+<p>3、设置字典，设置线程</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avy9y8p3j30de09b3zt.jpg" alt="img"> </p>
+<p>4、开始暴力破解攻击</p>
+<p>5、得到密码</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avyfq3dtj30fe02nq3d.jpg" alt="img"> </p>
+<p>6、登录验证</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avyl1asyj305f022glh.jpg" alt="img"> </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tangdanhuang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/24/文件上传/">http://yoursite.com/2019/08/24/文件上传/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/24/Nmap操作练习、利用ms17_010/"><i class="fa fa-chevron-left">  </i><span>Nmap基础实验、利用ms17_010</span></a></div><div class="next-post pull-right"><a href="/2019/08/24/SSRF和一句话木马上传/"><span>SSRF和一句话木马上传</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Tangdanhuang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

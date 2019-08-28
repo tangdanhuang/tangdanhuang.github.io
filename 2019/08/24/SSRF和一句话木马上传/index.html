@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="SSRF和一句话木马上传"><meta name="keywords" content><meta name="author" content="Tangdanhuang"><meta name="copyright" content="Tangdanhuang"><title>SSRF和一句话木马上传 | Tangdanhuang'blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-07-31实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/07/31实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Tangdanhuang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">18</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tangdanhuang'blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">SSRF和一句话木马上传</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-24</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-07-31实验笔记"><a href="#2019-07-31实验笔记" class="headerlink" title="2019/07/31实验笔记"></a>2019/07/31实验笔记</h2><p>体验了ssrf漏洞的使用方法，尝试了上传一句话木马的方法。</p>
+<a id="more"></a>
+
+<p>任务1：url跳转到一个公网地址</p>
+<p>172.16.13.32/ssrf.php?url=<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avgykketj30a104uaa7.jpg" alt="img"> </p>
+<p>可以看到这里的百度的发布的年份是2018年的，而现在的百度是2019所以访问成功</p>
+<p>任务二：通过ssrf访问内网</p>
+<p>172.16.13.32/ssrf.php?127.0.0.1</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avh3xsnkj30fe07f75l.jpg" alt="img"> </p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avha0r3oj30fe03jmxp.jpg" alt="img"> </p>
+<p>任务三：访问目标机的信息</p>
+<p>172.16.13.20/ssrf.php?file:///C:/windows/win.ini</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avhm0pm5j30fe02qdgn.jpg" alt="img"> </p>
+<p>任务四：绕过jsp上传一句话木马</p>
+<p>1、制作一句话木马</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avk59uucj30fe032q3k.jpg" alt="img"> </p>
+<p>2、发现只允许上传jpg文件</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6avk9zytlj30f006zaat.jpg" alt="img"> </p>
+<p>3、修改文件类型再上传</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6avkhoud1j30fe03vdgr.jpg" alt="img"> </p>
+<p>但是这样上传之后并不能执行所以现在使用抓包</p>
+<p>4、抓包修改之后再上传</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avkmcxupj30bs023weq.jpg" alt="img"> </p>
+<p>将这里的文件类型改为.php</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6avl5mfzjj30fd03mmy6.jpg" alt="img"> </p>
+<p>5、使用菜刀编辑连接</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6avlakw9dj30d206o3zb.jpg" alt="img"> </p>
+<p>6、测试</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6avm3oxsxj30fd08fjrt.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务五：绕过禁止PHP上传一句话木马</p>
+<p>1、构建一句话木马</p>
+<p>2、上传</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avm9ntazj306m01qwef.jpg" alt="img"> </p>
+<p>上传失败，文件类型不能为PHP</p>
+<p>3、修改文件名为hihack.php.jpg</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6avmeel0cj30dd02vmxv.jpg" alt="img"> </p>
+<p>上传成功</p>
+<p>4、使用菜刀验证</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6avmju7xxj30d206odgp.jpg" alt="img"> </p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6avmpi1fmj30fd08fmxn.jpg" alt="img"> </p>
+<p>成功。</p>
+<p>任务六：upload-labs/Pass-01</p>
+<p>1、进入任务，上传php文件发现失败</p>
+<p>查看提示</p>
+<p>2、构建一句话木马，修改木马的格式为jpg</p>
+<p>3、上传时抓包，修改格式为php</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avn2d0hcj30ej01e74j.jpg" alt="img"> </p>
+<p>放包</p>
+<p>4、使用菜刀连接刚才上传的木马</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6avn8787hj30d206ot9j.jpg" alt="img"> </p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6avnd0h0oj30fd08fmxo.jpg" alt="img"> </p>
+<p>连接成功！</p>
+<p>任务七：upload-labs/Pass-05</p>
+<p>1、进入任务，上传php文件发现失败</p>
+<p>查看提示</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avnioghmj30b6066gnb.jpg" alt="img"> </p>
+<p>2、修改一句话木马的格式</p>
+<p>把木马格式修改为jpg，使用burpsuite进行抓包</p>
+<p>修改格式为.phP</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6avnnnkrwj30cx01xmxi.jpg" alt="img"> </p>
+<p>放包</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6avnuefzaj307r05ljrc.jpg" alt="img"> </p>
+<p>上传成功</p>
+<p>3、使用菜刀连接方才上传的木马</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avo0394jj30d206o753.jpg" alt="img"> </p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6avo4mtluj30fe02cdg8.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务七：upload-labs/Pass-06</p>
+<p>1、修改一句话木马的格式为jpg</p>
+<p>2、抓包进行修改格式</p>
+<p>将木马格式修改为.php.jpg</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6avod4yabj30cu01lglw.jpg" alt="img"> </p>
+<p>放包</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6avoie4otj307b06cjrg.jpg" alt="img"> </p>
+<p>修改成功</p>
+<p>3、使用中国菜刀</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avonoreej30d206oaax.jpg" alt="img"> </p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6avotcwz3j309x03174k.jpg" alt="img"> </p>
+<p>成功连接</p>
+<p>今日的随笔</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6avp8bms0j30fe0ffdjb.jpg" alt="img"> </p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6avpeozm9j30fe02v0tb.jpg" alt="img"> </p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6avpm9i78j30f206rgma.jpg" alt="img"><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6avqasy5kj30fe0ew79j.jpg" alt="img"> </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tangdanhuang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/24/SSRF和一句话木马上传/">http://yoursite.com/2019/08/24/SSRF和一句话木马上传/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/24/文件上传/"><i class="fa fa-chevron-left">  </i><span>文件上传实验</span></a></div><div class="next-post pull-right"><a href="/2019/08/24/获取cookie/"><span>获取cookie验证身份</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Tangdanhuang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

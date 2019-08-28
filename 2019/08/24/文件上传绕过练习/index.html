@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="文件上传绕过练习、图片马上传"><meta name="keywords" content><meta name="author" content="Tangdanhuang"><meta name="copyright" content="Tangdanhuang"><title>文件上传绕过练习、图片马上传 | Tangdanhuang'blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-08-03实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/08/03实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Tangdanhuang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">18</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tangdanhuang'blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">文件上传绕过练习、图片马上传</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-24</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-08-03实验笔记"><a href="#2019-08-03实验笔记" class="headerlink" title="2019/08/03实验笔记"></a>2019/08/03实验笔记</h2><p>进行了一些基础的文件上传绕过的练习，感觉还是蛮有收获。</p>
+<a id="more"></a>
+
+<p>任务1：upload-labs/less-3</p>
+<p>1、构建一句话木马，使其格式为jpg</p>
+<p>2、上传抓包，修改其格式为.php.jpg</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awl9kztwj30cx01474g.jpg" alt="img"> </p>
+<p>3、放包，上传成功</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6awlen2vjj30de0573z4.jpg" alt="img"> </p>
+<p>4、使用蚁剑进行连接验证。</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awljv70nj30fe0af3zp.jpg" alt="img"> </p>
+<p>任务2：upload-labs/less-4</p>
+<p>1、可以看一下他过滤的名单然后再构建木马，使其格式为.htaccess，内容如下</p>
+<p>&lt;FilesMatch “gg.jpg”&gt;</p>
+<p>SetHandler application/x-httpd-php</p>
+    
+
+<p>之后上传的文件都会以PHP格式执行</p>
+<p>2、再次上传文件名为gg的一句话木马，格式为jpg</p>
+<p>3、使用蚁剑连接刚刚的gg木马验证连接</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awlqagilj30fd0agwfm.jpg" alt="img"> </p>
+<p>任务3：upload-labs/less-7</p>
+<p>1、查看源码，还是黑名单，但是没有对后缀名进行去”.”处理，利用windows特性，会自动去掉后缀名中最后的”.”，可在后缀名中加”.”绕过</p>
+<p>2、上传抓包</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awm2408jj30do01bwer.jpg" alt="img"> </p>
+<p>3、放包，上传成功</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awm6synhj30ai05t3yu.jpg" alt="img"> </p>
+<p>4、执行11.php</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awmeex7uj30at00vmx7.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awmm2g7xj309b04owep.jpg" alt="img"> </p>
+<p>成功</p>
+<p>任务4：upload-labs/less-8</p>
+<p>查看源码，发型过滤了大部分的格式，连.htaccess也过滤了，但是没有对后缀名进行去”::$DATA”处理，利用windows特性，可在后缀名中加” ::$DATA”绕过：</p>
+<p>1、设置一句话木马，构建格式为jpg</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awmr51l1j309v01gt8o.jpg" alt="img"> </p>
+<p>2、上传抓包，修改其格式为.php::$DATA</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awmylbhqj30dr019jrj.jpg" alt="img"> </p>
+<p>3、放包，上传成功</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6awn694jij30ad05mgm2.jpg" alt="img"> </p>
+<p>4、使用蚁剑连接刚刚上传的木马</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awne7eyxj3093067jrs.jpg" alt="img"> </p>
+<p>任务5：upload-labs/less-9</p>
+<p>1、查看源码，发型过滤了大部分的格式，连.htaccess也过滤了，因此考虑后缀名绕过</p>
+<p>2、设置一句话木马，构建格式为jpg</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6awnn8gudj309v01gt8o.jpg" alt="img"> </p>
+<p>3、上传抓包，修改其格式为php. .</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awnsekdrj30d1015dfy.jpg" alt="img"> </p>
+<p>4、放包，上传成功</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6awnyn0ouj30ad05mgm2.jpg" alt="img"> </p>
+<p>5、使用蚁剑连接刚刚上传的木马</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awo5jqfdj3093067jrs.jpg" alt="img"> </p>
+<p>任务6：upload-labs/less-10</p>
+<p>1、查看代码，发现是替代后缀，网上查阅资料发现建议使用双写，使用之后觉得没有用，于是使用图片马</p>
+<p>2、制作图片马</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6awobh71zj30fe01ddg0.jpg" alt="img"> </p>
+<p>3、上传</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awoi6sb3j30by09zwfn.jpg" alt="img"> </p>
+<p>4、使用蚁剑进行连接验证</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6awonusu2j30ct08paax.jpg" alt="img"> </p>
+<p>任务7：upload-labs/less-13</p>
+<p>1、根据题目要求是上传图片马</p>
+<p>2、制作图片马</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6awotrjljj30fe01ddg0.jpg" alt="img"> </p>
+<p>3、上传，抓包</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6awoyt0zrj30d4026gls.jpg" alt="img"> </p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6awp5rzrjj30by09zwfn.jpg" alt="img"> </p>
+<p>4、使用蚁剑进行连接验证</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6awpawxtnj30bq07ygme.jpg" alt="img"> </p>
+<p>任务8：upload-labs/less-14</p>
+<p>1、根据题目要求是上传图片马</p>
+<p>2、制作图片马</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6awpfvlzjj30fe014mxk.jpg" alt="img"> </p>
+<p>3、上传，抓包</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awpmse6mj30ex02eq38.jpg" alt="img"> </p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awpv4s8nj305x06l74k.jpg" alt="img"> </p>
+<p>4、使用蚁剑测试</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6awq13yiqj30fe0agjsr.jpg" alt="img"> </p>
+<p>任务9：upload-labs/less-15</p>
+<p>1、根据题目要求是上传图片马，这里用到php_exif模块来判断文件类型，没有打开的需要在PHPstudy里面手动打开</p>
+<p>2、制作图片马</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6awq7tclrj30fe014mxk.jpg" alt="img"> </p>
+<p>3、上传，抓包</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6awqc4ladj30dk01adfz.jpg" alt="img"> </p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6awqg2qk7j305x06l74k.jpg" alt="img"> </p>
+<p>4、使用蚁剑测试</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awqmptztj30e609q75h.jpg" alt="img"> </p>
+<p>任务10：upload-labs/less-16</p>
+<p>1、根据题目要求是上传图片马</p>
+<p>2、制作图片马</p>
+<p>4、上传之后，发现图片马被二次渲染了，里面的一句话密码已经不见了，此时打开winhex，将上传之前和上传之后的文件做对比，找到没有被二次渲染的部分</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6awqs35lyj30fe08tjwn.jpg" alt="img"> </p>
+<p>蓝色的部分就是没有被二次渲染的部分，把一句话木马写到这个部分里面</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6awqww4cij30fe03iac4.jpg" alt="img"> </p>
+<p>此时再次上传，上传完成之后对比上传前后的hex码</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awr19zv4j30ba02ft8w.jpg" alt="img"> </p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6awr6ezssj30fe068dj8.jpg" alt="img"> </p>
+<p>这时可以看到，一句话木马还在，没有被删除</p>
+<p>4、使用蚁剑测试</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awrblg4jj309y06tdgf.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awrgvwzsj30a006qt9s.jpg" alt="img"> </p>
+<p>连接成功</p>
+<p>任务11：upload-labs/less-18</p>
+<p>1、构建图片马上传</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awrkp7v3j30fe014mxk.jpg" alt="img"> </p>
+<p>2、发现文件上传之后存储之后会重命名，因此从新构建图片马，够完成竞争上传，使之能在执行时创建shell，从而达到上传图片马连接的目的</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6awrqf1c3j30fd019dgf.jpg" alt="img"> </p>
+<p>3、上传抓包</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awrva92kj30fe02l74h.jpg" alt="img"> </p>
+<p>4、设置好上传的参数，开始攻击</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6aws3vqefj306x03qq38.jpg" alt="img"><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6aws9ao91j307l03pt8t.jpg" alt="img"> </p>
+<p>4、在上传的时候在浏览器疯狂对<a href="http://172.16.13.28/upload-labs/include.php?file=upload/3.gif按刷新" target="_blank" rel="noopener">http://172.16.13.28/upload-labs/include.php?file=upload/3.gif按刷新</a></p>
+<p>在文件重命名之前执行文件</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6awsfjauoj30fd02twf1.jpg" alt="img"> </p>
+<p>这里虽然执行了，但是并没有生成shell。。。。。难受</p>
+<p>任务12：upload-labs/less-19</p>
+<p>1、构建一句话木马</p>
+<p>2、上传，抓包，修改文件名称为11.php. .</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awskc6exj30e804cgmn.jpg" alt="img"> </p>
+<p>3、放包，上传成功</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6awsqsdxzj30dn03q748.jpg" alt="img"> </p>
+<p>4、测试</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6awsvtliej30d7032q3a.jpg" alt="img"> </p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6awt18pgbj30bd04p74f.jpg" alt="img"> </p>
+<p>生成了shell文件，测试成功</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tangdanhuang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/24/文件上传绕过练习/">http://yoursite.com/2019/08/24/文件上传绕过练习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/2019/08/24/Nmap操作练习、利用ms17_010/"><span>Nmap基础实验、利用ms17_010</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Tangdanhuang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="获取cookie验证身份"><meta name="keywords" content><meta name="author" content="Tangdanhuang"><meta name="copyright" content="Tangdanhuang"><title>获取cookie验证身份 | Tangdanhuang'blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-07-30实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/07/30实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Tangdanhuang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">18</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tangdanhuang'blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">获取cookie验证身份</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-24</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-07-30实验笔记"><a href="#2019-07-30实验笔记" class="headerlink" title="2019/07/30实验笔记"></a>2019/07/30实验笔记</h2><p>今天学习了几种获取cookie达到身份验证的效果</p>
+<a id="more"></a>
+
+<p>任务1：XSS反射型获取cookie</p>
+<p>1、通过在线平台生成一个获取cookie的连接，然后在DVWA点击按钮的时候抓包再把name的值改为刚刚获取的连接。</p>
+<p>GET /DVWA/vulnerabilities/xss_r/?name=<a href="https://xsshs.cn/GFRf/xss.jpg" target="_blank" rel="noopener">https://xsshs.cn/GFRf/xss.jpg</a> HTTP/1.1</p>
+<p>2、利用社工学的手法发送给朋友</p>
+<p>当有人点击这个网站的时候就会获取他的cookie</p>
+<p>任务2：创建存储型XSS注入</p>
+<p>1、在网页的输入框中输入在线平台的XSS模块</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6av5igtn6j30fe03egly.jpg" alt="img"> </p>
+<p>2、等待有人刷新网页</p>
+<p>3、查看获取cookie状态</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6av5w4ld2j30fe0cln0g.jpg" alt="img"> </p>
+<p>我的外网ip为248，分别抓到了小组成员249,250.</p>
+<p>任务3：利用cookie</p>
+<p>1、在登陆时使用burpsuite抓包</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6av5zzvg0j30e1088jsb.jpg" alt="img"> </p>
+<p>此时，登陆是失败的</p>
+<p>2、把之前获得的cookie复制过来</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6av6btzakj30fd03z3zh.jpg" alt="img"> </p>
+<p>此时发送就可以登陆了</p>
+<p>任务4：利用CSRF获取cookie修改密码</p>
+<p>1、首先A在正常的网页上登陆，然后修改密码</p>
+<p>2、此时B抓包</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6av6ikgh2j30fd03ydgb.jpg" alt="img"> </p>
+<p>删除Referer</p>
+<p>此时使用CSRFPoC工具</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6av6ml7x3j30ci02hwet.jpg" alt="img"> </p>
+<p>选择使用浏览器测试</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6av6zr4ydj30fe031q37.jpg" alt="img"> </p>
+<p>将连接复制到使用burpsuite代理的浏览器</p>
+<p><a href="http://burp/show/2/otdm948noidyecvgqwr2hdnjugekqyeg" target="_blank" rel="noopener">http://burp/show/2/otdm948noidyecvgqwr2hdnjugekqyeg</a></p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6av74mdmej30bx02amx1.jpg" alt="img"> </p>
+<p>点击之后</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6av7a35unj30du07l0u1.jpg" alt="img"> </p>
+<p>此时退出登陆，再次登陆进行验证，登陆成功。</p>
+<p>​    </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tangdanhuang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/24/获取cookie/">http://yoursite.com/2019/08/24/获取cookie/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/24/SSRF和一句话木马上传/"><i class="fa fa-chevron-left">  </i><span>SSRF和一句话木马上传</span></a></div><div class="next-post pull-right"><a href="/2019/08/19/WAF绕过/"><span>WAF绕过基础实验</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Tangdanhuang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
