@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="思科交换机基础操作"><meta name="keywords" content><meta name="author" content="Tangdanhuang"><meta name="copyright" content="Tangdanhuang"><title>思科交换机基础操作 | Tangdanhuang'blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-08-05实验笔记"><span class="toc-number">1.</span> <span class="toc-text">2019/08/05实验笔记</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Tangdanhuang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">20</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Tangdanhuang'blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">思科交换机基础操作</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-28</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="2019-08-05实验笔记"><a href="#2019-08-05实验笔记" class="headerlink" title="2019/08/05实验笔记"></a>2019/08/05实验笔记</h2><p>学习了一些思科交换机的基础操作</p>
+<a id="more"></a>
+
+<p>任务一：熟悉PT面板及配置设备的模式与基本命令</p>
+<p><strong>任务二：Telnet的配置与实现</strong></p>
+<p>任务拓扑</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6f8jc95xjj3062026aa3.jpg" alt="img"> </p>
+<p>由用户模式进入特权模式</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6f8jhku4aj304x014a9y.jpg" alt="img"> </p>
+<p>进入全局配置模式</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6f8jlvfqqj305j00ot8n.jpg" alt="img"> </p>
+<p>设置提示符为sw1</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6f8k1mxopj30an00nwen.jpg" alt="img"> </p>
+<p>设置管理交换机的IP地址</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6f8ka4fczj30fe01a74o.jpg" alt="img"> </p>
+<p>启用接口</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6f8nso85bj308z00rdfw.jpg" alt="img"> </p>
+<p>配置进入特权模式的密码为123456</p>
+<p><img src="http://wx2.sinaimg.cn/large/0078H38igy1g6f8o1qjh1j30cn00l3yq.jpg" alt="img"> </p>
+<p>进入VTY端口</p>
+<p><img src="http://ws3.sinaimg.cn/large/0078H38igy1g6f8o87pkbj309o00v3yk.jpg" alt="img"> </p>
+<p>设置Telnet的登录密码为1234567</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6f8ons6aij30d200taaa.jpg" alt="img"> </p>
+<p>允许Telnet登录</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6f8owtv4yj308w00t74c.jpg" alt="img"> </p>
+<p>配置好pc机的地址</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6f8p9rf0pj30fe03pjrv.jpg" alt="img"> </p>
+<p>打开pc机命令行进行Telnet连接验证</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6f8pitimdj30ah032q3b.jpg" alt="img"> </p>
+<p><strong>任务三：IOS的备份与升级</strong></p>
+<p>任务拓扑</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6f8py2bhyj306t02aq2z.jpg" alt="img"> </p>
+<p>开启服务器的ftp服务</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6f8q2hrqqj30d701saa1.jpg" alt="img"> </p>
+<p>查看ios文件</p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6f8q94s6gj30fd02edg7.jpg" alt="img"> </p>
+<p>备份ios文件</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6f8qeudprj30fd0270t0.jpg" alt="img"> </p>
+<p>升级ios</p>
+<p>查看ios文件，发现剩余的空间还很多，不过这里我还是想试着删除一下ios</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6f8ql67jcj30fd02edg7.jpg" alt="img"> </p>
+<p>删除ios文件</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6f8qxxoxyj30fe00raab.jpg" alt="img"> </p>
+<p>再从服务器下载升级的ios文件</p>
+<p><img src="http://ws2.sinaimg.cn/large/0078H38igy1g6f8r3hp3kj30fd0310tr.jpg" alt="img"> </p>
+<p>重启交换机，升级完成</p>
+<p><img src="http://wx4.sinaimg.cn/large/0078H38igy1g6f8rbzv32j305g00zglj.jpg" alt="img"> </p>
+<p><img src="http://wx3.sinaimg.cn/large/0078H38igy1g6f8rh0h7kj30fe01jjrv.jpg" alt="img"> </p>
+<p><strong>任务四：配置文件的备份与还原</strong></p>
+<p>任务拓扑</p>
+<p><img src="http://ws1.sinaimg.cn/large/0078H38igy1g6f8rmoux1j307r02wdfx.jpg" alt="img"> </p>
+<p>配置交换机</p>
+<p>设置管理交换机的IP地址</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6f8rs99kzj30fe01a74o.jpg" alt="img"> </p>
+<p>备份交换机配置文件</p>
+<p><img src="http://ws4.sinaimg.cn/large/0078H38igy1g6f8rxpq2jj30fe03rdgz.jpg" alt="img"> </p>
+<p>还原交换机配置文件</p>
+<p><img src="http://wx1.sinaimg.cn/large/0078H38igy1g6f8s4jgz8j30fe06tjty.jpg" alt="img"> </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Tangdanhuang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/28/思科交换机基础操作/">http://yoursite.com/2019/08/28/思科交换机基础操作/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/28/划分子网练习/"><i class="fa fa-chevron-left">  </i><span>子网划分方法</span></a></div><div class="next-post pull-right"><a href="/2019/08/24/文件上传绕过练习/"><span>文件上传绕过练习、图片马上传</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Tangdanhuang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
